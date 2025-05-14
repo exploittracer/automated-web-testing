@@ -8,41 +8,32 @@ from pathlib import Path
 # Set up the Chrome driver
 driver = webdriver.Chrome()
 
-# Open the file and read all filenames into a list
-with open('file-list.txt', 'r') as file:
+# Open the Github text file and read all filenames into a list
+with open('github-file-list.txt', 'r') as file:
     filenames = [line.strip() for line in file if line.strip()]
 
-# Define the Downloads folder and target file
+# Define the Downloads folder (default directory to store downloaded files)
 downloads = Path("D:/Downloads")
 
-
-
-
-# Print the list of filenames
+# Iterate through list of filenames
 for file in filenames:
-    # print(file)
 
     try:
-        # 1. Open Google
+        # 1. Open the Github page of downloadable PDF file and wait for 5 seconds
         driver.get("https://github.com/ffisk/books/blob/master/" + file)
-
-        # driver.get("https://github.com/ffisk/books/blob/master/are-your-networks-ready-for-the-iot.pdf")
         time.sleep(5)
 
         # 2. Find the download button
         download_button = driver.find_element(By.XPATH, '//*[@id=":rgr:"]/button')
         
-        # 3. Click download button
+        # 3. Click download button and wait then for 10 seconds in downloading the file
         download_button.click()
-
-        # 4. Wait for results to load
         time.sleep(10)
 
-
-        # 5. Define the target file from Downloads folder
+        # 4. Get the full directory of the target file from Downloads folder
         pdf_file = downloads / file
 
-        # Check existence
+        # 5. Check if the file was successfully downloaded
         if pdf_file.exists():
             print(f"✅ '{pdf_file.name}' exists in Downloads.")
         else:
