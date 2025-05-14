@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
+from pathlib import Path
+
 
 # Set up the Chrome driver
 driver = webdriver.Chrome()
@@ -9,6 +11,12 @@ driver = webdriver.Chrome()
 # Open the file and read all filenames into a list
 with open('file-list.txt', 'r') as file:
     filenames = [line.strip() for line in file if line.strip()]
+
+# Define the Downloads folder and target file
+downloads = Path("D:/Downloads")
+
+
+
 
 # Print the list of filenames
 for file in filenames:
@@ -30,9 +38,16 @@ for file in filenames:
         # 4. Wait for results to load
         time.sleep(10)
 
-        # # 5. Check if 'OpenAI' is in the page title
-        # assert "OpenAI" in driver.title
-        # print("Test passed: 'OpenAI' found in the page title.")
+
+        # 5. Define the target file from Downloads folder
+        pdf_file = downloads / file
+
+        # Check existence
+        if pdf_file.exists():
+            print(f"✅ '{pdf_file.name}' exists in Downloads.")
+        else:
+            print(f"❌ '{pdf_file.name}' not found in Downloads.")
+
 
     except AssertionError:
         print("Test failed: 'OpenAI' not found in the page title.")
