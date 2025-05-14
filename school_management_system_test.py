@@ -10,15 +10,15 @@ USERNAME = "student1"                   # Replace with actual test username
 PASSWORD = "student123"                   # Replace with actual test password
 EXPECTED_URL = "http://localhost:3000/student"  # URL after successful login
 
-# # Headless Chrome options (optional)
-# options = Options()
+# Headless Chrome options (optional)
+options = Options()
 # options.add_argument("--headless")
 # options.add_argument("--disable-gpu")
-# options.add_argument("--window-size=1920,1080")
+options.add_argument("--window-size=1920,1080")
 
 # Start the driver
-# driver = webdriver.Chrome(options=options)
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
+# driver = webdriver.Chrome()
 
 try:
     # 1. Open login page
