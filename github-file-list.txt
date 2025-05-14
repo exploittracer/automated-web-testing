@@ -16,7 +16,6 @@ Kubernetes_OpenShift.pdf
 Managing_Kubernetes.pdf
 Path-to-Predictive-Analytics-and-Machine-Learning_eBook.pdf
 Practical_Time_Series_Analysis_MemSQL.pdf
-README.md
 a-whirlwind-tour-of-python.pdf
 ai-and-medicine.pdf
 ambient-computing.pdf
